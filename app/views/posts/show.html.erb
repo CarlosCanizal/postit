@@ -6,3 +6,24 @@ Title:
 
 <%=@post.description%>
 <br/>
+<br/>
+
+
+
+<h3>Add a Comment </h3>
+<br/>
+<%=form_for [@post,@comment]  do |f| %>
+  
+  <%=f.text_area :body %>
+  <br/>
+  <%=f.submit "Add a comment", class:'btn btn-info'%>
+  
+<%end%>
+
+<h3>Comments </h3>
+
+<ul>
+  <% @comments.each do |comment|%>
+    <li><%=comment.body%></li>
+  <%end%>
+</ul>
