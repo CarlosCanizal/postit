@@ -1,16 +1,24 @@
 <h3>Welcome!</h3>
 
-<ul>
+<div id='posts-list'>
   <% @posts.each do |post| %>
-    <li>
-      <% if logged_in? %>
-        <%=link_to '+', vote_post_path(post,{vote:true}), method:'post' %> 
-      <%end%>
-        / <%=post.total_votes%> / 
-      <% if logged_in? %>
-        <%=link_to '-', vote_post_path(post,{vote:false}), method:'post' %>  
-      <%end%>
-      <%= link_to post.title, post %>
-    </li>
+    <div>
+      <div class='opacity'></div>
+      <div class='post-content'>        
+        <h4><%= link_to post.title, post %></h4>
+        <p><%= post.description %></p>
+        <p>Posted By: <%=link_to post.creator.username%> at <%=post.created_at%> </p>
+        <div class='votes'>
+          <% if logged_in? %>
+            <%=link_to '<i class="icon-thumbs-up-alt"></i>'.html_safe, vote_post_path(post,{vote:true}), method:'post', class:'vote-up' %> 
+          <%end%>
+          <span class='total-votes'><%=post.total_votes%></span>
+          <% if logged_in? %>
+            <%=link_to '<i class="icon-thumbs-down-alt"></i>'.html_safe, vote_post_path(post,{vote:false}), method:'post', class:'vote-down' %>  
+          <%end%>
+          <div class='opacity-black'></div>
+        </div>
+      </div>
+    </div>
   <%end%>
-</ul>
+</div>

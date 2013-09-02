@@ -9,12 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require font-awesome
  *= require_tree .
  */
 
  @import "bootstrap";
 
- .container {
+.container {
   margin-left: 135px
 }
 
@@ -40,5 +41,90 @@ div.nav_item {
 
 div.comment_votes {
   padding: 10px;
+}
+
+
+
+
+/*post index */
+
+#posts-list{
+}
+
+#posts-list > div{
+  display: block;
+  padding:20px;
+  margin-bottom:20px;
+  min-height:100px;
+  position: relative;
+}
+
+.opacity{
+  width:100%;
+  height:100%;
+  border: solid 1px #000;
+  border-radius: 10px;
+  position: absolute;
+  background-color: #ccc;
+  opacity: 0.6;
+  top:0;
+  left:0;
+  z-index: 1;
+}
+
+.opacity-black{
+  width:100%;
+  height:100%;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #000;
+  opacity: 0.8;
+  top:0;
+  left:0;
+  z-index: 1;
+}
+
+.post-content{
+  position: relative;
+  z-index: 2;
+}
+
+.votes{
+  position:absolute;
+  width:120px;
+  height:120px;
+  top:-20px;
+  right: 0px;
+  border-radius:50%;
+
+  span.total-votes{
+    position: absolute;
+    font-size: 3em;
+    width:100%;
+    text-align: center;
+    top:50px;
+    color:#FFF;
+    z-index: 2;
+  }
+
+  a.vote-up{
+    position: absolute;
+    font-size: 2em;
+    width:100%;
+    text-align: center;
+    top:10px;
+    color:#FFF;
+    z-index: 2;
+  }
+
+  a.vote-down{
+    position: absolute;
+    font-size: 2em;
+    width:100%;
+    text-align: center;
+    bottom:10px;
+    color:#FFF;
+    z-index: 2;
+  }
 }
 
