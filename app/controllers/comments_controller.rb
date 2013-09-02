@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :vote]
   before_action :set_post
 
   def index
@@ -20,7 +20,10 @@ class CommentsController < ApplicationController
     end
   end
 
-
+  def vote
+    Vote.create(votable:@comment,creator:current_user,vote:params[:vote])
+    redirect_to post_path(@post)
+  end
 
   private
 

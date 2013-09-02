@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :vote]
 
 
   def index
@@ -39,6 +39,11 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to posts_url
+  end
+
+  def vote
+    Vote.create(votable:@post,creator:current_user,vote:params[:vote])
+    redirect_to posts_path
   end
 
 

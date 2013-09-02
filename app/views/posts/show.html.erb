@@ -24,6 +24,10 @@ Title:
 
 <ul>
   <% @comments.each do |comment|%>
-    <li><%=comment.body%></li>
+    <li>
+      <%=link_to '+', vote_post_comment_path(@post,comment,{vote:true}), method:'post' %> / <%=comment.total_votes%> / <%=link_to '-', vote_post_comment_path(@post,comment,{vote:false}), method:'post' %> 
+
+      <%=comment.body%>
+    </li>
   <%end%>
 </ul>
