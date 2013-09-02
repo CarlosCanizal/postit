@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [:show, :edit, :update, :destroy, :vote]
+  before_action :access_denied, only:[:vote]
 
 
   def index
@@ -42,7 +43,11 @@ class PostsController < ApplicationController
   end
 
   def vote
-    Vote.create(votable:@post,creator:current_user,vote:params[:vote])
+    if already_voted?(@post)
+      flash[:notice] = 'You already voted in this post.'
+    else
+      Vote.create(votable:@post,creator:current_user,vote:params[:vote])
+    end
     redirect_to posts_path
   end
 

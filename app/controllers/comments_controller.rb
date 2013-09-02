@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
 
-  before_action :set_comment, only: [:show, :edit, :update, :destroy, :vote]
   before_action :set_post
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :vote]
+  before_action :access_denied, only:[:vote]
 
   def index
 
@@ -21,7 +22,11 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    Vote.create(votable:@comment,creator:current_user,vote:params[:vote])
+    if already_voted?(@post)
+      flash[:notice] = 'You already voted in this comment.'
+    else
+      Vote.create(votable:@comment,creator:current_user,vote:params[:vote])
+    end
     redirect_to post_path(@post)
   end
 
