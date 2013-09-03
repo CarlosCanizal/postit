@@ -22,18 +22,25 @@ Title:
 
 <h3>Comments </h3>
 
-<ul>
+<div id='object-list'>
   <% @comments.each do |comment|%>
-    <li>
-      <% if logged_in? %>
-        <%=link_to '+', vote_post_comment_path(@post,comment,{vote:true}), method:'post' %>
-      <%end%>
-       / <%=comment.total_votes%> / 
-      <% if logged_in? %>
-        <%=link_to '-', vote_post_comment_path(@post,comment,{vote:false}), method:'post' %> 
-      <%end%>
+    <div>
+      <div class='opacity'></div>
+      <div class='object-content'>  
+        <div class='votes'>
+          <% if logged_in? %>
+            <%=link_to '<i class="icon-thumbs-up-alt"></i>'.html_safe, vote_post_comment_path(@post,comment,{vote:true}), method:'post', remote:true, class:'vote-up' %> 
+          <%end%>
+          <span id='total-votes-<%=comment.id%>' class='total-votes'><%=comment.total_votes%></span>
+          <% if logged_in? %>
+            <%=link_to '<i class="icon-thumbs-down-alt"></i>'.html_safe, vote_post_comment_path(@post,comment,{vote:false}), method:'post', class:'vote-down', remote:true %>  
+          <%end%>
+          <div class='opacity-black'></div>
+        </div>
 
-      <%=comment.body%>
-    </li>
+        <%="\"#{comment.body}\""%>
+
+      </div>
+    </div>
   <%end%>
-</ul>
+</div>

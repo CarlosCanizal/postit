@@ -48,10 +48,10 @@ div.comment_votes {
 
 /*post index */
 
-#posts-list{
+#object-list{
 }
 
-#posts-list > div{
+#object-list > div{
   display: block;
   padding:20px;
   margin-bottom:20px;
@@ -84,7 +84,7 @@ div.comment_votes {
   z-index: 1;
 }
 
-.post-content{
+.object-content{
   position: relative;
   z-index: 2;
 }
