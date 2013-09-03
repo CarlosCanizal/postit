@@ -21,4 +21,9 @@ class ApplicationController < ActionController::Base
     current_user.votes.find_by(votable:obj)
   end
 
+  def require_admin
+    access_denied
+    redirect_to root_path unless current_user.admin? 
+  end
+
 end
