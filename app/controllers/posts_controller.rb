@@ -49,7 +49,11 @@ class PostsController < ApplicationController
     else
       Vote.create(votable:@post,creator:current_user,vote:params[:vote])
     end
-    redirect_to posts_path
+
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js
+    end
   end
 
 

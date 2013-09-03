@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
     else
       Vote.create(votable:@comment,creator:current_user,vote:params[:vote])
     end
-    redirect_to post_path(@post)
+    redirect_to :back
   end
 
   private
