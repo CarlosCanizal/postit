@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  include Votable
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
   has_many :comments
 
@@ -9,11 +10,6 @@ class Post < ActiveRecord::Base
   validates_presence_of :title
 
   after_validation :generate_slug
-
-
-  def total_votes
-    self.votes.where(vote:true).count - self.votes.where(vote:false).count
-  end
 
   def generate_slug
     self.slug = self.title.gsub(' ','-').downcase
