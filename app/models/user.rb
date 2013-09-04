@@ -12,4 +12,9 @@ class User < ActiveRecord::Base
     self.role  == 'admin'
   end
 
+  after_validation :slug
+  def slug
+    self.generate_slug(self.username)
+  end
+
 end

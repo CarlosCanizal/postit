@@ -14,6 +14,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
+gem 'voteable-carlos', '>= 0.2.0'
+gem 'slug-carlos'
+
 gem "font-awesome-rails"
 
 group :doc do

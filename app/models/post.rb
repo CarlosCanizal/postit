@@ -1,24 +1,16 @@
 class Post < ActiveRecord::Base
-  include Voteable
+  include VoteableCarlos
+  include SlugCarlos
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
   has_many :comments
 
   has_many :post_categories
   has_many :categories, through: :post_categories
-  has_many :votes, as: :voteable
-
   validates_presence_of :title
 
-  after_validation :generate_slug
-
-  def generate_slug
-    self.slug = self.title.gsub(' ','-').downcase
+  after_validation :slug
+  def slug
+    self.generate_slug(self.title)
   end
-
-  def to_param
-    self.slug
-  end
-
-
 
 end
