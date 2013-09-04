@@ -1,11 +1,11 @@
 class Post < ActiveRecord::Base
-  include Votable
+  include Voteable
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
   has_many :comments
 
   has_many :post_categories
   has_many :categories, through: :post_categories
-  has_many :votes, as: :votable
+  has_many :votes, as: :voteable
 
   validates_presence_of :title
 

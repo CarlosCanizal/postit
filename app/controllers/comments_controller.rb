@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     if already_voted?(@post)
       flash[:notice] = 'You already voted in this comment.'
     else
-      Vote.create(votable:@comment,creator:current_user,vote:params[:vote])
+      Vote.create(voteable:@comment,creator:current_user,vote:params[:vote])
     end
     redirect_to :back
   end

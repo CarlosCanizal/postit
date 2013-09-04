@@ -47,7 +47,7 @@ class PostsController < ApplicationController
     if already_voted?(@post)
       flash[:notice] = 'You already voted in this post.'
     else
-      Vote.create(votable:@post,creator:current_user,vote:params[:vote])
+      Vote.create(voteable:@post,creator:current_user,vote:params[:vote])
     end
 
     respond_to do |format|

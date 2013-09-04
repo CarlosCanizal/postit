@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def already_voted? obj
-    current_user.votes.find_by(votable:obj)
+    current_user.votes.find_by(voteable:obj)
   end
 
   def require_admin

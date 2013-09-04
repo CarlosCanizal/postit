@@ -1,7 +1,7 @@
 class Comment < ActiveRecord::Base
-  include Votable
+  include Voteable
   belongs_to :user
   belongs_to :post
-  has_many :votes, as: :votable
+  has_many :votes, as: :voteable
 
 end
