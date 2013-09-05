@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   before_action :set_post, only: [:show, :edit, :update, :destroy, :vote]
   before_action :access_denied, only:[:vote,:show, :create]
-
+  before_action :verify_admin, only:[:update,:edit]
 
   def index
     @posts = Post.all
@@ -44,10 +44,12 @@ class PostsController < ApplicationController
   end
 
   def vote
-    if already_voted?(@post)
-      flash[:notice] = 'You already voted in this post.'
+    @already_voted = already_voted?(@post)
+    if @already_voted
+      @message = 'You already voted in this post.'
     else
       Vote.create(voteable:@post,creator:current_user,vote:params[:vote])
+      @message = nil
     end
 
     respond_to do |format|
@@ -65,6 +67,10 @@ class PostsController < ApplicationController
 
   def post_params
       params.require(:post).permit(:title, :url, :description)
+  end
+
+  def verify_admin
+      redirect_to root_path,notice:'You can\'t do that.' unless current_user.admin?
   end
 
 end

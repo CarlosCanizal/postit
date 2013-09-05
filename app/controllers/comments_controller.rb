@@ -17,17 +17,24 @@ class CommentsController < ApplicationController
       flash[:notice] = 'Comment was added!'
       redirect_to post_path(@post)
     else
-      render 'post/show'
+      @comments = @post.comments
+      render 'posts/show'
     end
   end
 
   def vote
-    if already_voted?(@post)
-      flash[:notice] = 'You already voted in this comment.'
+    @already_voted = already_voted?(@comment)
+    if @already_voted
+      @message = 'You already voted in this comment.'
     else
       Vote.create(voteable:@comment,creator:current_user,vote:params[:vote])
+      @message = nil
     end
-    redirect_to :back
+
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js
+    end
   end
 
   private

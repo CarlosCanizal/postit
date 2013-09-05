@@ -5,20 +5,20 @@
     <div>
       <div class='opacity'></div>
       <div class='object-content'>        
-        <h4><%= link_to post.title, fix_url(post.url) %></h4>
+        <h4><%= link_to post.title, fix_url(post.url), target:'_blank' %></h4>
         <p><%= post.description %></p>
         <p>Posted By: <%=link_to post.creator.username%> at <%=date_format(post.created_at)%> </p>
         <%= post.comments.count %> <%= link_to 'Comments', post %>
-        <div class='votes'>
-          <% if logged_in? %>
-            <%=link_to '<i class="icon-thumbs-up-alt"></i>'.html_safe, vote_post_path(post,{vote:true}), method:'post', remote:true, class:'vote-up' %> 
-          <%end%>
-          <span id='total-votes-<%=post.id%>' class='total-votes'><%=post.total_votes%></span>
-          <% if logged_in? %>
-            <%=link_to '<i class="icon-thumbs-down-alt"></i>'.html_safe, vote_post_path(post,{vote:false}), method:'post', class:'vote-down', remote:true %>  
-          <%end%>
-          <div class='opacity-black'></div>
-        </div>
+      </div>
+      <div class='votes'>
+        <% if logged_in? %>
+          <%=link_to '<i class="icon-thumbs-up-alt"></i>'.html_safe, vote_post_path(post,{vote:true}), method:'post', remote:true, class:'vote-up' %> 
+        <%end%>
+        <span id='total-votes-<%=post.id%>' class='total-votes'><%=post.total_votes%></span>
+        <% if logged_in? %>
+          <%=link_to '<i class="icon-thumbs-down-alt"></i>'.html_safe, vote_post_path(post,{vote:false}), method:'post', class:'vote-down', remote:true %>  
+        <%end%>
+        <div class='opacity-black'></div>
       </div>
     </div>
   <%end%>

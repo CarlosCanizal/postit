@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   end
 
   def generate_pin!
-    self.update_column(:pin,rand(10**6))
+    #self.update_column(:pin,rand(10**6))
+    self.update_column(:pin,'123456')
   end
 
   def two_factor_auth?
@@ -22,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def remove_pin!
-    self.update_column(pin:nil)
+    self.update_column(:pin,nil)
   end
 
   after_validation :slug
