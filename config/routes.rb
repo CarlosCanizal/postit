@@ -25,4 +25,6 @@ PostitTemplate::Application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
+  match '/pin', to: 'sessions#pin', via:[:post,:get]
+
 end

@@ -5,7 +5,11 @@ module ApplicationHelper
   end
 
   def date_format(date)
-    date.in_time_zone(current_user.time_zone).strftime("%d %B %Y %H:%M:%S")
+    if current_user
+      date.in_time_zone(current_user.time_zone).strftime("%d %B %Y %H:%M:%S")
+    else
+      date.strftime("%d %B %Y %H:%M:%S")
+    end
   end
 
 end
