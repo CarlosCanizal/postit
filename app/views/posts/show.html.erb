@@ -3,14 +3,17 @@
   <p><%= @post.description %></p>
   <p>Posted By: <%=link_to @post.creator.username, user_path(@post.creator)%> at <%=date_format(@post.created_at)%> </p>
 </div>
-<h3>Add a Comment </h3>
-<br/>
-<%=form_for [@post,@comment]  do |f| %>
-  
-  <%=f.text_area :body %>
+
+<%if logged_in? %>
+  <h3>Add a Comment </h3>
   <br/>
-  <%=f.submit "Add a comment", class:'btn btn-info'%>
-  
+  <%=form_for [@post,@comment]  do |f| %>
+    
+    <%=f.text_area :body %>
+    <br/>
+    <%=f.submit "Add a comment", class:'btn btn-info'%>
+    
+  <%end%>
 <%end%>
 
 <h3>Comments</h3>

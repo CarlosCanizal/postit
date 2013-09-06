@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   private
 
   def get_user
+    binding.pry
     @user = User.find_by(username:params[:id])
   end
 

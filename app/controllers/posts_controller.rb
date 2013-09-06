@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [:show, :edit, :update, :destroy, :vote]
-  before_action :access_denied, only:[:vote,:show, :create]
+  before_action :access_denied, only:[:vote, :create]
   before_action :verify_admin, only:[:update,:edit]
 
   def index
