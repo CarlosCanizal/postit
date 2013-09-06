@@ -19,7 +19,7 @@ PostitTemplate::Application.routes.draw do
   resources :categories
 
   get '/register', to: 'users#new'
-  resources :users, only:[:create]
+  resources :users
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

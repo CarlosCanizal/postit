@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-
   skip_before_filter :verify_authenticity_token
+
+  before_action :get_user, only:[:show, :edit]
 
   def new
     @user = User.new
@@ -20,8 +21,16 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
+
+  def show
+  end
+
   private
+
+  def get_user
+    @user = User.find_by(username:params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:username, :password, :time_zone, :phone)

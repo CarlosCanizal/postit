@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
 
   before_action :set_post
   before_action :set_comment, only: [:show, :edit, :update, :destroy, :vote]
-  before_action :access_denied, only:[:vote]
+  before_action :access_denied, only:[:vote,:show, :create]
+
 
   def index
 
@@ -11,7 +12,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.post = @post
-
+    @comment.user = current_user
 
     if @comment.save 
       flash[:notice] = 'Comment was added!'

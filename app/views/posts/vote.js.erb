@@ -4,6 +4,7 @@ $('.alert-success').remove();
       <a class="close" data-dismiss="alert">&#215;</a>\
       <div id="flash_notice"><%=@message%></div>\
     </div>');
+  $("html, body").animate({ scrollTop: "0" });
 <%else%>
   $('#total-votes-<%=@post.id%>').html('<%=@post.votes.count%>');
 <%end%>
