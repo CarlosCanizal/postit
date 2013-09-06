@@ -6,5 +6,5 @@ $('.alert-success').remove();
     </div>');
   $("html, body").animate({ scrollTop: "0" });
 <%else%>
-  $('#total-votes-<%=@post.id%>').html('<%=@post.votes.count%>');
+  $('#total-votes-<%=@post.id%>').html('<%=@post.total_votes%>');
 <%end%>
